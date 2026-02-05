@@ -1,13 +1,121 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Moja strona</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <h1>Witam na mojej Stronie</h1>
-    <p>To jest komenda p</p>
-    <p></p>
-  </body>
+
+<html lang="pl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Walentynkowe Pytanie</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            padding: 20px;
+
+        }
+
+        #question-container {
+
+            display: none;
+
+            margin-top: 20px;
+
+        }
+
+        .hidden {
+
+            display: none;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Słuchaj misiaku, naprawdę cię kocham całym serduszkiem, nic lepszego nie mogło się wydarzyć jak poznanie ciebie. Nawet nie zdajesz sobie sprawy, jak bardzo jestem przy tobie szczęśliwa. Wiem, że nie zawsze jest ze mną łatwo i czasami cię ranię, nie zdając sobie z tego sprawy, ale mimo to, nadal SEBUŚ KOCHAM CIĘ bezgranicznie i chcę być już z tobą na zawsze, na dobre i na złe, i mam bardzo ważne pytanie <span id="heart" style="cursor: pointer; color: red;">❤️</span></h1>
+
+    <div id="question-container">
+
+        <h2>Czy zostaniesz moją walentynką?</h2>
+
+        <form id="valentineForm" action="https://formspree.io/f/mqkzjbbp" method="POST">
+
+            <label for="answer">Wybierz odpowiedź:</label><br>
+
+            <input type="radio" id="yes" name="answer" value="Tak💋❤️">
+
+            <label for="yes">Tak💋❤️</label><br>
+
+            <input type="radio" id="no" name="answer" value="Nie😭💔">
+
+            <label for="no">Nie😭💔</label><br>
+
+            <input type="radio" id="other" name="answer" value="Inna odpowiedź">
+
+            <label for="other">Inna</label><br><br>
+
+            <div id="other-answer" class="hidden">
+
+                <label for="custom-answer">Podaj swoją odpowiedź:</label><br>
+
+                <input type="text" id="custom-answer" name="custom-answer"><br><br>
+
+            </div>
+
+            <input type="submit" value="Wyślij odpowiedź">
+
+        </form>
+
+    </div>
+
+    <script>
+
+        document.getElementById('heart').onclick = function() {
+
+            document.getElementById('question-container').style.display = 'block';
+
+        }
+
+        // Pokaż pole tekstowe, jeśli wybrano "Inna"
+
+        const otherRadioButton = document.getElementById('other');
+
+        const otherAnswerField = document.getElementById('other-answer');
+
+        otherRadioButton.addEventListener('change', function() {
+
+            if (this.checked) {
+
+                otherAnswerField.classList.remove('hidden');
+
+            }
+
+        });
+
+        // Ukryj pole tekstowe, jeśli wybrano inne odpowiedzi
+
+        const yesNoRadioButtons = document.querySelectorAll('input[name="answer"]:not(#other)');
+
+        yesNoRadioButtons.forEach(button => {
+
+            button.addEventListener('change', function() {
+
+                otherAnswerField.classList.add('hidden');
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
 </html>
